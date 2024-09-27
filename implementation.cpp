@@ -117,6 +117,28 @@ public:
 
         return -1;
     }
+
+    void remove(string key) {
+        int idx = HashFunction(key);
+
+        Node* temp = table[idx];
+        Node* prev = temp;
+
+        while (temp) {
+            if (temp->key == key) {
+                if (prev == temp) {
+                    table[idx] = temp->next;
+                } else {
+                    prev->next = temp->next;
+                }
+
+                break;
+            }
+
+            prev = temp;
+            temp = temp->next;
+        }
+    }
     
     void print() {
         for (int i = 0; i<totSize; i++) {
@@ -142,6 +164,8 @@ int main() {
     ht.insert("Nepal", 30);
     ht.insert("Bhutan", 10);
 
+    ht.print();
+    ht.remove("India");
     ht.print();
     return 0;
 }
