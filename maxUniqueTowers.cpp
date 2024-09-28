@@ -6,13 +6,12 @@ using namespace std;
 long long maximumTotalSum(vector<int>& maximumHeight) {
         
     unordered_map<int, int> m;
-    int count = 1;
     for (int i=0; i<maximumHeight.size(); i++) {
         
         if (m.count(maximumHeight[i])) {
-            m[maximumHeight[i]] = count++;
+            m[maximumHeight[i]]++;
         } else {
-            m[maximumHeight[i]] = count;
+            m[maximumHeight[i]] = 1;
         }
     }
 
@@ -20,7 +19,7 @@ long long maximumTotalSum(vector<int>& maximumHeight) {
         if (m[maximumHeight[i]] > 1) {
             while ( m[maximumHeight[i]] == 1 && maximumHeight[i]>0) {
                 maximumHeight[i]--;
-                 m[maximumHeight[i]] = count--;
+                 m[maximumHeight[i]]--;
             }
         }
     }
